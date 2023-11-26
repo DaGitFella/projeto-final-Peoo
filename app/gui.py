@@ -4,14 +4,15 @@
 
 
 from pathlib import Path
+from functions import *
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, Label, StringVar
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Users\20221041110019\Documents\python\projeto-final-Peoo\build\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\User\Documents\estudos\python\projetos\projeto-final-Peoo\app\assets\frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -20,9 +21,12 @@ def relative_to_assets(path: str) -> Path:
 
 window = Tk()
 
+window.title("Calculator")
 window.geometry("350x757")
 window.configure(bg = "#F2F2F1")
 
+expression = StringVar()
+result = StringVar()
 
 canvas = Canvas(
     window,
@@ -66,7 +70,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command= lambda: display_values('%', expression),
     relief="flat"
 )
 button_1.place(
@@ -82,7 +86,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: display_values('1', expression),
     relief="flat"
 )
 button_2.place(
@@ -98,7 +102,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=lambda: display_values('2', expression),
     relief="flat"
 )
 button_3.place(
@@ -114,7 +118,7 @@ button_4 = Button(
     image=button_image_4,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
+    command=lambda: display_values('3', expression),
     relief="flat"
 )
 button_4.place(
@@ -130,7 +134,7 @@ button_5 = Button(
     image=button_image_5,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
+    command=lambda: display_values('+', expression),
     relief="flat"
 )
 button_5.place(
@@ -162,7 +166,7 @@ button_7 = Button(
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_7 clicked"),
+    command=lambda: clear(expression, result),
     relief="flat"
 )
 button_7.place(
@@ -178,7 +182,7 @@ button_8 = Button(
     image=button_image_8,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_8 clicked"),
+    command=lambda: delete(expression, result),
     relief="flat"
 )
 button_8.place(
@@ -194,7 +198,7 @@ button_9 = Button(
     image=button_image_9,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_9 clicked"),
+    command=lambda: display_values('÷', expression),
     relief="flat"
 )
 button_9.place(
@@ -210,7 +214,7 @@ button_10 = Button(
     image=button_image_10,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_10 clicked"),
+    command=lambda: display_values('0', expression),
     relief="flat"
 )
 button_10.place(
@@ -226,7 +230,7 @@ button_11 = Button(
     image=button_image_11,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_11 clicked"),
+    command=lambda: display_values('.', expression),
     relief="flat"
 )
 button_11.place(
@@ -242,7 +246,7 @@ button_12 = Button(
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_12 clicked"),
+    command=lambda: calculate(result),
     relief="flat"
 )
 button_12.place(
@@ -258,7 +262,7 @@ button_13 = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_13 clicked"),
+    command=lambda: display_values('7', expression),
     relief="flat"
 )
 button_13.place(
@@ -274,7 +278,7 @@ button_14 = Button(
     image=button_image_14,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_14 clicked"),
+    command=lambda: display_values('8', expression),
     relief="flat"
 )
 button_14.place(
@@ -290,7 +294,7 @@ button_15 = Button(
     image=button_image_15,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_15 clicked"),
+    command=lambda: display_values('9', expression),
     relief="flat"
 )
 button_15.place(
@@ -306,7 +310,7 @@ button_16 = Button(
     image=button_image_16,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_16 clicked"),
+    command=lambda: display_values('x', expression),
     relief="flat"
 )
 button_16.place(
@@ -322,7 +326,7 @@ button_17 = Button(
     image=button_image_17,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_17 clicked"),
+    command=lambda: display_values('4', expression),
     relief="flat"
 )
 button_17.place(
@@ -338,7 +342,7 @@ button_18 = Button(
     image=button_image_18,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_18 clicked"),
+    command=lambda: display_values('5', expression),
     relief="flat"
 )
 button_18.place(
@@ -354,7 +358,7 @@ button_19 = Button(
     image=button_image_19,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_19 clicked"),
+    command=lambda: display_values('6', expression),
     relief="flat"
 )
 button_19.place(
@@ -370,7 +374,7 @@ button_20 = Button(
     image=button_image_20,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_20 clicked"),
+    command=lambda: display_values('-', expression),
     relief="flat"
 )
 button_20.place(
@@ -387,17 +391,22 @@ entry_bg_1 = canvas.create_image(
     247.0,
     image=entry_image_1
 )
-entry_1 = Entry(
+entry_1 = Label(
     bd=0,
     bg="#121212",
-    fg="#000716",
-    highlightthickness=0
+    fg="#fff",
+    font=('ivy 32 bold'),
+    anchor='e',
+    highlightthickness=0,
+    textvariable=result,
+    padx='7' ,
+    justify='right'
 )
 entry_1.place(
     x=30.0,
     y=232.0,
     width=294.0,
-    height=28.0
+    height=32.0
 )
 
 entry_image_2 = PhotoImage(
@@ -407,15 +416,20 @@ entry_bg_2 = canvas.create_image(
     211.0,
     image=entry_image_2
 )
-entry_2 = Entry(
+entry_2 = Label(
     bd=0,
     bg="#121212",
-    fg="#000716",
-    highlightthickness=0
+    fg="#623d94",
+    highlightthickness=0,
+    textvariable=expression,
+    font=('ivy 14 bold'),
+    padx='7',
+    anchor='e',
+    justify='right'
 )
 entry_2.place(
     x=30.0,
-    y=201.0,
+    y=195.0,
     width=294.0,
     height=18.0
 )
