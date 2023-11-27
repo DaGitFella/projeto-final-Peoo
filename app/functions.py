@@ -36,7 +36,7 @@ def delete(expression, screen):
     
 def calculate(screen):
     try:
-        result = round(eval(python_values), 5)
+        result = '{:g}'.format(eval(python_values))
     except ZeroDivisionError:
         screen.set('∞')
     screen.set(result)

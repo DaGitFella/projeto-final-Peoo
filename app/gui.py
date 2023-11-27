@@ -8,7 +8,7 @@ from functions import *
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage, Label, StringVar
+from tkinter import Tk, Canvas, Button, PhotoImage, Label, StringVar
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -155,7 +155,7 @@ button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=lambda: print("Coming soon"),
     relief="flat"
 )
 button_6.place(
