@@ -24,6 +24,10 @@ window = Tk()
 window.title("Calculator")
 window.geometry("350x757")
 window.configure(bg = "#F2F2F1")
+icon_image = PhotoImage(
+    file=relative_to_assets('calculator icon.png')
+)
+window.iconphoto(True, icon_image)
 
 expression = StringVar()
 result = StringVar()
