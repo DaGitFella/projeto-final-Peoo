@@ -18,7 +18,6 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\User\Documents\estudos\python\projet
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-
 window = Tk()
 
 window.title("Calculator")
@@ -28,6 +27,8 @@ icon_image = PhotoImage(
     file=relative_to_assets('calculator icon.png')
 )
 window.iconphoto(True, icon_image)
+ 
+window.bind("<Escape>", lambda event: window.destroy())
 
 expression = StringVar()
 result = StringVar()
@@ -453,5 +454,7 @@ button_21.place(
     width=17.199951171875,
     height=12.290008544921875
 )
+
+
 window.resizable(False, False)
 window.mainloop()

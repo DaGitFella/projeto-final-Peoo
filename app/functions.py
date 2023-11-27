@@ -1,7 +1,9 @@
 from tkinter import *
 
+
 all_values = ''
 python_values = ''
+
 def display_values(value, expression):
     
     convert = {
@@ -19,7 +21,7 @@ def display_values(value, expression):
         python_values += str(value)  
     
     expression.set(all_values)
-
+    
 def clear(expression, screen):
     global all_values, python_values
     all_values, python_values = "", ""
@@ -34,7 +36,7 @@ def delete(expression, screen):
     
 def calculate(screen):
     try:
-        result = eval(python_values)
+        result = round(eval(python_values), 5)
     except ZeroDivisionError:
         screen.set('∞')
     screen.set(result)
