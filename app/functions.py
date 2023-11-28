@@ -34,9 +34,10 @@ def delete(expression, screen):
     expression.set(all_values)
     screen.set("")
     
-def calculate(screen):
+def calculate(screen, expression):
     try:
         result = '{:g}'.format(eval(python_values))
     except ZeroDivisionError:
         screen.set('∞')
-    screen.set(result)
+    expression.set(result)
+    screen.set(all_values)

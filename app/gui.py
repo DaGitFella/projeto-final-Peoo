@@ -12,8 +12,7 @@ from tkinter import Tk, Canvas, Button, PhotoImage, Label, StringVar
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\User\Documents\estudos\python\projetos\projeto-final-Peoo\app\assets\frame0")
-
+ASSETS_PATH = OUTPUT_PATH / Path(r"/home/davi/Documents/projeto-final-Peoo/app/assets/frame0")
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
@@ -251,7 +250,7 @@ button_12 = Button(
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: calculate(result),
+    command=lambda: calculate(result, expression),
     relief="flat"
 )
 button_12.place(
@@ -403,7 +402,7 @@ entry_1 = Label(
     font=('ivy 32 bold'),
     anchor='e',
     highlightthickness=0,
-    textvariable=result,
+    textvariable=expression,
     padx='7' ,
     justify='right'
 )
@@ -426,7 +425,7 @@ entry_2 = Label(
     bg="#121212",
     fg="#623d94",
     highlightthickness=0,
-    textvariable=expression,
+    textvariable=result,
     font=('ivy 14 bold'),
     padx='7',
     anchor='e',
@@ -436,7 +435,7 @@ entry_2.place(
     x=30.0,
     y=195.0,
     width=294.0,
-    height=18.0
+    height=20.0
 )
 
 button_image_21 = PhotoImage(
