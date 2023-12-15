@@ -3,12 +3,12 @@
 # https://github.com/ParthJadhav/Tkinter-Designer
 
 
-from msilib.schema import ListBox
 from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import StringVar, Tk, Canvas, Entry, Listbox, Button, PhotoImage, Label
+from tkinter import Label, Listbox, StringVar, Tk, Canvas, Entry, Button, PhotoImage, END
+from turtle import Screen
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -26,17 +26,11 @@ window.configure(bg = "#343034")
 window.title("listagem")
 
 num = StringVar()
-lista = Listbox(window)
+Screen = StringVar()
+lista = []
 
-global insert 
-insert = 1
-
-def inserir():
-    lista.insert(insert, num.get())
-    print(lista)
-
-    global insert
-    insert+=1
+def media():
+    
 
 canvas = Canvas(
     window,
@@ -70,7 +64,7 @@ entry_1 = Entry(
     bg="#D9D9D9",
     fg="#000716",
     highlightthickness=0,
-    textvariable=insert
+    textvariable=num
 )
 entry_1.place(
     x=159.0,
@@ -81,12 +75,11 @@ entry_1.place(
 
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
-
 button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=inserir(),
+    command=lambda: inserir_num(),
     relief="flat"
 )
 button_1.place(
@@ -104,26 +97,27 @@ canvas.create_rectangle(
     fill="#D9D9D9",
     outline="")
 
-entry_image_2 = PhotoImage(
-    file=relative_to_assets("entry_2.png"))
-entry_bg_2 = canvas.create_image(
-    173.5,
-    125.5,
-    image=entry_image_2
-)
-entry_2 = Label(
+entry_2 = Listbox(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
     highlightthickness=0,
-    textvariable=lista
 )
+
 entry_2.place(
     x=33.0,
     y=117.0,
     width=281.0,
     height=15.0
 )
+
+def inserir_num():
+    lista.append(float(num.get()))
+
+    entry_2.insert(END, num.get())
+    Screen.set(num.get())
+    num.set("")
+    print(lista)
 
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
@@ -179,7 +173,7 @@ canvas.create_text(
     240.0,
     389.0,
     anchor="nw",
-    text="Maior",
+    text="média",
     fill="#FFFFFF",
     font=("Inter", 10 * -1)
 )
@@ -206,7 +200,7 @@ button_5 = Button(
     image=button_image_5,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: inserir(),
+    command=lambda: print("button_5 clicked"),
     relief="flat"
 )
 button_5.place(
