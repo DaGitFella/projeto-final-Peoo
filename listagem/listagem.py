@@ -7,12 +7,12 @@ from pathlib import Path
 
 # from tkinter import *
 # Explicit imports to satisfy Flake8
-from tkinter import Label, Listbox, StringVar, Tk, Canvas, Entry, Button, PhotoImage, END
-from turtle import Screen
+from tkinter import Label, Listbox, StringVar, Tk, Canvas, Entry, Button, PhotoImage, Scrollbar, END, messagebox
+import numpy
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Users\20221041110019\Documents\python\projeto-final-Peoo\listagem\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Users\20221041110019\Documents\projeto-final-Peoo\listagem\assets\frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -25,12 +25,56 @@ window.geometry("350x450")
 window.configure(bg = "#343034")
 window.title("listagem")
 
+global num
 num = StringVar()
+scrollbar = Scrollbar()
 Screen = StringVar()
 lista = []
+minor = False
+Average = False
+bigger = False
 
-def media():
+def inserir_num():
+
+    entry_2.delete(0, END)
+    lista.append(float(num.get()))
+
+    for numero in lista:
+        entry_2.insert(END, numero)
+        
+    num.set("")
+    print(lista)
+
+def Menor():
+    minor = True
+    Average = False
+    Bigger = False
+    m = min(lista)
+    return f"o menor número é: {m}"
     
+def Maior():
+    minor = False
+    Average = False
+    Bigger = True
+    m = max(lista)
+    return f"o maior número é: {m}"
+
+def Media():
+    minor = False
+    Average = True
+    Bigger = False
+    m = sum(lista)/len(lista)
+    return f"a média dos números é: {m}"
+
+def calcular():
+    dicionario = {minor:Menor(), 
+              bigger:Maior(), 
+              Average:Media()}
+    
+    for option, resultado in dicionario.items():
+        if option:
+            messagebox.showinfo(message=resultado)
+            print(resultado)
 
 canvas = Canvas(
     window,
@@ -89,35 +133,28 @@ button_1.place(
     height=16.0
 )
 
-canvas.create_rectangle(
-    23.0,
-    103.0,
-    325.0,
-    364.0,
-    fill="#D9D9D9",
-    outline="")
+# canvas.create_rectangle(
+#     23.0,
+#     103.0,
+#     325.0,
+#     364.0,
+#     fill="#D9D9D9",
+#     outline="")
 
 entry_2 = Listbox(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
     highlightthickness=0,
+    yscrollcommand=scrollbar
 )
 
 entry_2.place(
     x=33.0,
     y=117.0,
     width=281.0,
-    height=15.0
+    height=250
 )
-
-def inserir_num():
-    lista.append(float(num.get()))
-
-    entry_2.insert(END, num.get())
-    Screen.set(num.get())
-    num.set("")
-    print(lista)
 
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
@@ -125,7 +162,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: Menor,
     relief="flat"
 )
 button_2.place(
@@ -150,7 +187,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=lambda: Maior(),
     relief="flat"
 )
 button_3.place(
@@ -184,7 +221,7 @@ button_4 = Button(
     image=button_image_4,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
+    command=lambda: Media(),
     relief="flat"
 )
 button_4.place(
@@ -200,7 +237,7 @@ button_5 = Button(
     image=button_image_5,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
+    command=lambda: calcular(),
     relief="flat"
 )
 button_5.place(
