@@ -12,7 +12,7 @@ import numpy
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Users\20221041110019\Documents\projeto-final-Peoo\listagem\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Users\20221041110019\Documents\python\projeto-final-Peoo\listagem\assets\frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -31,7 +31,7 @@ scrollbar = Scrollbar()
 Screen = StringVar()
 lista = []
 minor = False
-Average = False
+average = False
 bigger = False
 
 def inserir_num():
@@ -45,33 +45,43 @@ def inserir_num():
     num.set("")
     print(lista)
 
-def Menor():
+def Minor():
+    global minor, average, bigger
     minor = True
-    Average = False
-    Bigger = False
+    average = False
+    bigger = False
+
+def Menor():
     m = min(lista)
     return f"o menor número é: {m}"
     
-def Maior():
+def Bigger():
+    global minor, average, bigger
     minor = False
-    Average = False
-    Bigger = True
+    average = False
+    bigger = True
+
+def Maior():
     m = max(lista)
     return f"o maior número é: {m}"
 
-def Media():
+def Average():
+    global minor, average, bigger
     minor = False
-    Average = True
-    Bigger = False
+    average = True
+    bigger = False
+
+def Media():
     m = sum(lista)/len(lista)
     return f"a média dos números é: {m}"
 
 def calcular():
     dicionario = {minor:Menor(), 
               bigger:Maior(), 
-              Average:Media()}
+              average:Media()}
     
     for option, resultado in dicionario.items():
+        print(minor)
         if option:
             messagebox.showinfo(message=resultado)
             print(resultado)
@@ -162,7 +172,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: Menor,
+    command=lambda: Minor(),
     relief="flat"
 )
 button_2.place(
@@ -187,7 +197,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: Maior(),
+    command=lambda: Bigger(),
     relief="flat"
 )
 button_3.place(
@@ -221,7 +231,7 @@ button_4 = Button(
     image=button_image_4,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: Media(),
+    command=lambda: Average(),
     relief="flat"
 )
 button_4.place(
