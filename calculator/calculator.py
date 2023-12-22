@@ -12,28 +12,28 @@ from tkinter import Tk, Canvas, Button, PhotoImage, Label, StringVar
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Users\20221041110019\Documents\python\projeto-final-Peoo\app\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"D:\Users\20221041110019\Documents\python\projeto-final-Peoo\calculator\assets\frame0")
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-window = Tk()
+Calculadora = Tk()
 
-window.title("Calculator")
-window.geometry("350x757")
-window.configure(bg = "#F2F2F1")
+Calculadora.title("Calculator")
+Calculadora.geometry("350x757")
+Calculadora.configure(bg = "#F2F2F1")
 icon_image = PhotoImage(
     file=relative_to_assets('calculator icon.png')
 )
-window.iconphoto(True, icon_image)
+Calculadora.iconphoto(True, icon_image)
  
-window.bind("<Escape>", lambda event: window.destroy())
+Calculadora.bind("<Escape>", lambda event: Calculadora.destroy())
 
 expression = StringVar()
 result = StringVar()
 
 canvas = Canvas(
-    window,
+    Calculadora,
     bg = "#F2F2F1",
     height = 757,
     width = 350,
@@ -455,5 +455,5 @@ button_21.place(
 )
 
 
-window.resizable(False, False)
-window.mainloop()
+Calculadora.resizable(False, False)
+Calculadora.mainloop()

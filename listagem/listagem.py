@@ -19,11 +19,11 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
-window = Tk()
+Listagem = Tk()
 
-window.geometry("350x450")
-window.configure(bg = "#343034")
-window.title("listagem")
+Listagem.geometry("350x450")
+Listagem.configure(bg = "#343034")
+Listagem.title("listagem")
 
 global num
 num = StringVar()
@@ -87,7 +87,7 @@ def calcular():
             print(resultado)
 
 canvas = Canvas(
-    window,
+    Listagem,
     bg = "#343034",
     height = 450,
     width = 350,
@@ -256,5 +256,5 @@ button_5.place(
     width=56.0,
     height=17.0
 )
-window.resizable(False, False)
-window.mainloop()
+Listagem.resizable(False, False)
+Listagem.mainloop()
